@@ -1,1 +1,1 @@
-FROM pangeo/base-image:2020.01.01
+FROM pangeo/base-image:refs/heads/master 2020.01.01
