@@ -6,14 +6,17 @@ on:
 jobs:
   myEvent:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Find and Replace Base
-      - uses: actions/checkout@v2
+      - name: Store tag
+        id: store_tag
+        uses: actions/checkout@v2
         with:
           ref: ${{ github.event.client_payload.tag }}
-      - uses: jacobtomlinson/gha-find-replace@0.1.1
+        run: echo ::set-output name=VERSION::${{ github.event.client_payload.tag }}
+
+      - name: Find and Replace Base
+        uses: jacobtomlinson/gha-find-replace@0.1.1
         with:
           include: "binder/"
           find: "FROM pangeo/base-image: "
-          replace: "FROM pangeo/base-image:${{ github.event.client_payload.tag }} " 
+          replace: "FROM pangeo/base-image:${{ steps.store_tag.outputs.VERSION }} " 
