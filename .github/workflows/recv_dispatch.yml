@@ -18,5 +18,5 @@ jobs:
         uses: jacobtomlinson/gha-find-replace@0.1.1
         with:
           include: "binder/"
-          find: "FROM pangeo/base-image: "
+          find: "FROM pangeo/base-image:*"
           replace: "FROM pangeo/base-image:${{ steps.store_tag.outputs.VERSION }} " 
