@@ -13,3 +13,17 @@ jobs:
           include: "binder/"
           find: "FROM pangeo/base-image:*"
           replace: "FROM pangeo/base-image:${{ github.event.client_payload.tag }} " 
+
+      - uses: stefanzweifel/git-auto-commit-action@v4.1.1
+        with:
+          commit_message: "Release"
+          branch: master
+          file_pattern: Dockerfile
+          #
+          # Optional commit user and author settings
+          commit_user_name: My GitHub Actions Bot
+          commit_user_email: my-github-actions-bot@example.org
+          commit_author: Author <actions@github.com>
+
+          # Optional tag message. Will create and push a new tag to the remote repository
+          tagging_message: '{{ github.event.client_payload.tag }}'
