@@ -27,4 +27,4 @@ jobs:
           commit_author: Author <actions@github.com>
 
           # Optional tag message. Will create and push a new tag to the remote repository
-          tagging_message: '{{ github.event.client_payload.tag }}'
+          tagging_message: '${{ github.event.client_payload.tag }}'
